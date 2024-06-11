@@ -41,7 +41,8 @@
                                 <tbody>
                                     @foreach ($pengaduans as $pengaduan)
                                     <tr>
-                                        <td class="px-6 py-4">{{ $pengaduan->nama }}</td>
+                                        <td class="px-6 py-4">{{ $pengaduan->user->name }}</td>
+                                        
                                         <td class="px-6 py-4">{{ $pengaduan->nomor_hp }}</td>
                                         <td class="px-6 py-4">{{ $pengaduan->perihal }}</td>
                                         <td class="px-6 py-4">{{ $pengaduan->days_difference }} Hari</td>

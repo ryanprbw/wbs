@@ -185,7 +185,7 @@ CREATE TABLE IF NOT EXISTS `sppds` (
   KEY `sppds_tujuan_id_foreign` (`tujuan_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table e-mailss.sppds: ~3 rows (approximately)
+-- Dumping data for table e-mailss.sppds: ~0 rows (approximately)
 /*!40000 ALTER TABLE `sppds` DISABLE KEYS */;
 /*!40000 ALTER TABLE `sppds` ENABLE KEYS */;
 
@@ -203,7 +203,7 @@ CREATE TABLE IF NOT EXISTS `sppd_pegawai` (
   CONSTRAINT `sppd_pegawai_sppd_id_foreign` FOREIGN KEY (`sppd_id`) REFERENCES `sppds` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table e-mailss.sppd_pegawai: ~8 rows (approximately)
+-- Dumping data for table e-mailss.sppd_pegawai: ~0 rows (approximately)
 /*!40000 ALTER TABLE `sppd_pegawai` DISABLE KEYS */;
 /*!40000 ALTER TABLE `sppd_pegawai` ENABLE KEYS */;
 
@@ -254,7 +254,7 @@ CREATE TABLE IF NOT EXISTS `tujuans` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9509 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table e-mailss.tujuans: ~515 rows (approximately)
+-- Dumping data for table e-mailss.tujuans: ~514 rows (approximately)
 /*!40000 ALTER TABLE `tujuans` DISABLE KEYS */;
 INSERT INTO `tujuans` (`id`, `nama_tujuan`, `created_at`, `updated_at`) VALUES
 	(1101, 'KAB. ACEH SELATAN', NULL, NULL),

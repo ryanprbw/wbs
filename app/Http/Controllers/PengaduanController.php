@@ -5,11 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Pengaduan;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PengaduanController extends Controller
 {
     public function index()
     {
+        $user = Auth::user();
+        $pengaduans = Pengaduan::with('user')->get(); // Mengambil semua pengaduan beserta informasi pengguna yang menginputnya
         $pengaduans = Pengaduan::all()->map(function ($pengaduan) {
             $created_at = Carbon::parse($pengaduan->created_at);
             $updated_at = Carbon::parse($pengaduan->updated_at);
@@ -25,22 +28,20 @@ class PengaduanController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $request->validate([
-            'nama' => 'required',
-            'nomor_hp' => 'required',
-            'perihal' => 'required',
-            // 'captcha' => 'required|simple_captcha',
-        ]);
+{
+    $request->validate([
+        'nama' => 'required',
+        'nomor_hp' => 'required',
+        'perihal' => 'required',
+        // 'captcha' => 'required|simple_captcha',
+    ]);
 
-        Pengaduan::create($request->all());
-        $data['nama'] = $data['nama'] ?? '-';
-    $data['nomor_hp'] = $data['nomor_hp'] ?? '-';
-        
-             $request->validate([ '_answer' => 'required | simple_captcha' ]);
-        
-             return redirect()->back()->with('success', 'Pengaduan berhasil dikirim!');
-    }
+    $pengaduan = new Pengaduan($request->all());
+    $pengaduan->user_id = Auth::id(); // Mengambil ID pengguna yang sedang masuk
+    $pengaduan->save();
+
+    return redirect()->back()->with('success', 'Pengaduan berhasil dikirim!');
+}
 
     public function edit(Pengaduan $pengaduan)
     {

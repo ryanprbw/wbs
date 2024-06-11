@@ -15,4 +15,8 @@ class Pengaduan extends Model
         'perihal',
         'status',
     ];
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
