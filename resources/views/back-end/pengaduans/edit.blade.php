@@ -5,12 +5,12 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+    <div class="py-12 ">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 ">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
 
                 <body>
-                    <h2>Verifikasi Pengaduan</h2>
+                    {{-- <h2>Verifikasi Pengaduan</h2> --}}
                     <form action="{{ route('pengaduans.update', $pengaduan->id) }}" method="POST" class="max-w-sm mx-auto">
                         @csrf
                         @method('PUT')
