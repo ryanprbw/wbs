@@ -33,15 +33,31 @@ class PengaduanController extends Controller
         'nama' => 'required',
         'nomor_hp' => 'required',
         'perihal' => 'required',
-        // 'captcha' => 'required|simple_captcha',
+        'photos' => 'nullable|array|max:5', // Memastikan ini adalah array dan maksimal 5 foto
+        'photos.*' => 'image|mimes:jpg,jpeg,png|max:2048', // Validasi untuk setiap foto
     ]);
 
     $pengaduan = new Pengaduan($request->all());
     $pengaduan->user_id = Auth::id(); // Mengambil ID pengguna yang sedang masuk
+
+    // Menyimpan foto jika ada
+    if ($request->hasFile('photos')) {
+        $filePaths = []; // Array untuk menyimpan path file
+        foreach ($request->file('photos') as $file) {
+            $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension(); // Membuat nama file unik
+            $file->storeAs('photos', $filename, 'public'); // Menyimpan file di storage/app/public/photos
+            $filePaths[] = 'photos/' . $filename; // Menyimpan path foto ke array
+        }
+        // Simpan path foto dalam format JSON atau di database sesuai kebutuhan
+        $pengaduan->photo = json_encode($filePaths); // Simpan sebagai JSON
+    }
+
     $pengaduan->save();
 
     return redirect()->back()->with('success', 'Pengaduan berhasil dikirim!');
 }
+
+    
 
     public function edit(Pengaduan $pengaduan)
     {

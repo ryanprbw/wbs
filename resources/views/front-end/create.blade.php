@@ -18,18 +18,19 @@
         </div>
         <br>
     @endif
-    <form action="{{ route('dashboards.store') }}" method="POST">
+    <form action="{{ route('dashboards.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <label for="nama">Nama:</label><br>
         <input type="text" id="nama" name="nama" value="{{ old('nama') }}"><br><br>
+        
         <label for="nomor_hp">Nomor HP:</label><br>
         <input type="text" id="nomor_hp" name="nomor_hp" value="{{ old('nomor_hp') }}"><br><br>
-        <label for="perihal">Perihal:</label><br>
-        <textarea id="perihal" name="perihal">{{ old('perihal') }}"></textarea><br><br>
-
+        
+ 
+        <!-- Input untuk Foto -->
+ 
         <!-- Tambahkan captcha -->
-        {!!getCaptchaBox()!!}
-        {{-- @dd($getCaptchaBox) --}}
+        {!! getCaptchaBox() !!}
         <br>
 
         <button type="submit">Submit</button>
